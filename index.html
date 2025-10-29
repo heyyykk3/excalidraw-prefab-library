@@ -451,26 +451,13 @@
     </div>
 
     <script>
-        async function openInExcalidraw() {
-            try {
-                // Fetch the library file
-                const response = await fetch('prefab-library-complete.excalidrawlib');
-                const libraryData = await response.text();
+        function openInExcalidraw() {
+            // Direct URL to the library file hosted on GitHub Pages
+            const libraryUrl = 'https://heyyykk3.github.io/excalidraw-prefab-library/prefab-library-complete.excalidrawlib';
 
-                // Create a blob from the library data
-                const blob = new Blob([libraryData], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-
-                // Open Excalidraw with the library
-                const excalidrawUrl = `https://excalidraw.com/?addLibrary=${encodeURIComponent(url)}`;
-                window.open(excalidrawUrl, '_blank');
-
-                // Clean up the blob URL after a delay
-                setTimeout(() => URL.revokeObjectURL(url), 1000);
-            } catch (error) {
-                console.error('Error loading library:', error);
-                alert('Error loading library. Please try downloading the file instead.');
-            }
+            // Open Excalidraw with the library URL
+            const excalidrawUrl = `https://excalidraw.com/?addLibrary=${encodeURIComponent(libraryUrl)}`;
+            window.open(excalidrawUrl, '_blank');
         }
     </script>
 </body>
