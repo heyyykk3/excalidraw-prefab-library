@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excalidraw Prefab Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero {
+            background: white;
+            padding: 80px 20px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #6c5ce7;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #636e72;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .cta-button {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #5f3dc4;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: #6c5ce7;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .footer h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-button {
+            background: #00b894;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .footer-button:hover {
+            background: #00a085;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .footer h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <h1>Prefab Library</h1>
+        <p>Your smart collection for complete, efficient Excalidraw designs.</p>
+        <button class="cta-button" onclick="addToExcalidraw()">Learn more</button>
+    </div>
+
+    <div class="footer">
+        <h2>Prefab Library</h2>
+        <p>Your smart collection for complete, efficient Excalidraw designs.</p>
+        <button class="footer-button" onclick="addToExcalidraw()">Learn more</button>
+    </div>
+
+    <script>
+        function addToExcalidraw() {
+            // Replace these values with your actual GitHub username and repository name
+            const githubUsername = 'YOUR_GITHUB_USERNAME';
+            const repoName = 'YOUR_REPO_NAME';
+            const libraryFileName = 'my-prefab-library.excalidrawlib';
+
+            const libraryUrl = `https://raw.githubusercontent.com/${githubUsername}/${repoName}/main/${libraryFileName}`;
+            const excalidrawUrl = `https://excalidraw.com/?addLibrary=${encodeURIComponent(libraryUrl)}`;
+
+            window.open(excalidrawUrl, '_blank');
+        }
+    </script>
+</body>
+
+</html>
