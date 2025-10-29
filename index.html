@@ -1,348 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prefab Library - Excalidraw</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #fff;
             overflow-x: hidden;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            padding: 60px 0 40px;
-            text-align: center;
-        }
-
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { padding: 60px 0 40px; text-align: center; }
         .logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            animation: float 3s ease-in-out infinite;
+            width: 80px; height: 80px; margin: 0 auto 20px;
+            background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);
+            border-radius: 20px; display: flex; align-items: center; justify-content: center;
+            font-size: 40px; animation: float 3s ease-in-out infinite;
         }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
         h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
+            font-size: 3.5rem; font-weight: 800; margin-bottom: 20px;
             background: linear-gradient(to right, #fff, #e0e7ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-
-        .subtitle {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            font-weight: 300;
-            margin-bottom: 40px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
+        .subtitle { font-size: 1.3rem; opacity: 0.95; font-weight: 300; margin-bottom: 40px; }
+        .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
         .btn {
-            padding: 16px 40px;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: 600;
+            padding: 16px 40px; font-size: 1.1rem; border: none; border-radius: 50px;
+            cursor: pointer; transition: all 0.3s ease; text-decoration: none;
+            display: inline-block; font-weight: 600;
         }
-
         .btn-primary {
-            background: #fff;
-            color: #667eea;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: #fff; color: #667eea; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); }
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.2); color: #fff; backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-3px); }
+        .preview-section { padding: 80px 0; text-align: center; }
+        .preview-section h2 { font-size: 2.5rem; margin-bottom: 50px; }
+        .preview-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px; margin-top: 60px;
         }
-
-        .features {
-            padding: 80px 0;
+        .preview-card {
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+            border-radius: 20px; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center; transition: all 0.3s ease;
         }
-
+        .preview-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.15); }
+        .preview-card h3 { margin-bottom: 15px; font-size: 1.1rem; }
+        .preview-image {
+            background: #fff; border-radius: 10px; padding: 15px;
+            min-height: 180px; display: flex; align-items: center; justify-content: center;
+        }
+        .features { padding: 80px 0; }
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; margin-top: 60px;
         }
-
         .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+            border-radius: 20px; padding: 40px; border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
-
         .feature-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-10px); background: rgba(255, 255, 255, 0.15);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
         }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .feature-card p {
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .preview-section {
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .preview-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-        }
-
-        .preview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .preview-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .preview-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .preview-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .preview-image {
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .preview-placeholder {
-            color: #667eea;
-            font-size: 3rem;
-        }
-
+        .feature-icon { font-size: 3rem; margin-bottom: 20px; }
+        .feature-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .feature-card p { opacity: 0.9; line-height: 1.6; }
         .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px; margin-top: 60px;
         }
-
-        .stat-card {
-            text-align: center;
-        }
-
+        .stat-card { text-align: center; }
         .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 10px;
+            font-size: 3rem; font-weight: 800; margin-bottom: 10px;
             background: linear-gradient(to right, #fff, #e0e7ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .preview-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
+        .stat-label { font-size: 1.1rem; opacity: 0.9; }
         footer {
-            padding: 60px 0 40px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 80px;
+            padding: 60px 0 40px; text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: 80px;
         }
-
         .footer-links {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            display: flex; gap: 30px; justify-content: center;
+            margin-bottom: 20px; flex-wrap: wrap;
         }
-
         .footer-links a {
-            color: #fff;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s;
+            color: #fff; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;
         }
-
-        .footer-links a:hover {
-            opacity: 1;
-        }
-
-        .github-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-            color: #fff;
-            text-decoration: none;
-            opacity: 0.9;
-            transition: opacity 0.3s;
-        }
-
-        .github-link:hover {
-            opacity: 1;
-        }
-
+        .footer-links a:hover { opacity: 1; }
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.1rem; }
+            .btn { width: 100%; max-width: 300px; }
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <header>
             <div class="logo">🎨</div>
             <h1>Prefab Library</h1>
-            <p class="subtitle">A collection of ready-to-use design components for Excalidraw</p>
+            <p class="subtitle">14 ready-to-use design components for Excalidraw</p>
             <div class="cta-buttons">
                 <button onclick="addToExcalidraw()" class="btn btn-primary">Add to Excalidraw</button>
-                <a href="https://github.com/heyyykk3/excalidraw-prefab-library" class="btn btn-secondary">View on
-                    GitHub</a>
+                <a href="https://github.com/heyyykk3/excalidraw-prefab-library" class="btn btn-secondary">View on GitHub</a>
             </div>
         </header>
 
         <section class="preview-section">
-            <h2>Library Preview</h2>
+            <h2>Library Components</h2>
             <div class="preview-grid">
                 <div class="preview-card">
-                    <h3>Product Cards</h3>
+                    <h3>Ecommerce Productcard Mobile</h3>
                     <div class="preview-image">
-                        <div class="preview-placeholder">🛒</div>
+                        <img src="data:image/png;base64,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" alt="Ecommerce Productcard Mobile" style="max-width: 100%; height: auto;" />
                     </div>
                 </div>
                 <div class="preview-card">
-                    <h3>User Profiles</h3>
+                    <h3>{ ""Elements"":  [</h3>
                     <div class="preview-image">
-                        <div class="preview-placeholder">👤</div>
+                        <img src="" alt="{ ""Elements"":  [" style="max-width: 100%; height: auto;" />
                     </div>
                 </div>
                 <div class="preview-card">
-                    <h3>Mobile UI</h3>
+                    <h3>{</h3>
                     <div class="preview-image">
-                        <div class="preview-placeholder">📱</div>
+                        <img src="" alt="{" style="max-width: 100%; height: auto;" />
                     </div>
                 </div>
                 <div class="preview-card">
-                    <h3>Interactive Elements</h3>
+                    <h3>""Id"": ""P2Vwtpji Lljxhnaflohu"",</h3>
                     <div class="preview-image">
-                        <div class="preview-placeholder">🎯</div>
+                        <img src="" alt="""Id"": ""P2Vwtpji Lljxhnaflohu""," style="max-width: 100%; height: auto;" />
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <h3>""Type"": ""Image"",</h3>
+                    <div class="preview-image">
+                        <img src="" alt="""Type"": ""Image""," style="max-width: 100%; height: auto;" />
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <h3>""X"": 279.5366238177453,</h3>
+                    <div class="preview-image">
+                        <img src="" alt="""X"": 279.5366238177453," style="max-width: 100%; height: auto;" />
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <h3>""Y"": 349.03711615668425,</h3>
+                    <div class="preview-image">
+                        <img src="" alt="""Y"": 349.03711615668425," style="max-width: 100%; height: auto;" />
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <h3>""Width"": 233.31454940226993,</h3>
+                    <div class="preview-image">
+                        <img src="" alt="""Width"": 233.31454940226993," style="max-width: 100%; height: auto;" />
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <h3>""Height"": 199.2592366536456,</h3>
+                    <div class="preview-image">
+                        <img src="" alt="""Height"": 199.2592366536456," style="max-width: 100%; height: auto;" />
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <h3>""Angle"": 0,</h3>
+                    <div class="preview-image">
+                        <img src="" alt="""Angle"": 0," style="max-width: 100%; height: auto;" />
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <h3>""Strokecolor"": ""Transparent"",</h3>
+                    <div class="preview-image">
+                        <img src="" alt="""Strokecolor"": ""Transparent""," style="max-width: 100%; height: auto;" />
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <h3>""Backgroundcolor"": ""#1E1E1E"",</h3>
+                    <div class="preview-image">
+                        <img src="" alt="""Backgroundcolor"": ""#1E1E1E""," style="max-width: 100%; height: auto;" />
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <h3>""Fillstyle"": ""Solid"",</h3>
+                    <div class="preview-image">
+                        <img src="" alt="""Fillstyle"": ""Solid""," style="max-width: 100%; height: auto;" />
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <h3>""Strokewidth"": 1,</h3>
+                    <div class="preview-image">
+                        <img src="" alt="""Strokewidth"": 1," style="max-width: 100%; height: auto;" />
                     </div>
                 </div>
             </div>
@@ -353,33 +213,17 @@
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
                     <h3>Quick Integration</h3>
-                    <p>One-click installation directly into your Excalidraw workspace. Start using elements immediately.
-                    </p>
+                    <p>One-click installation directly into your Excalidraw workspace.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🎯</div>
                     <h3>Hand-Crafted</h3>
-                    <p>Each element is carefully designed to match Excalidraw's signature hand-drawn aesthetic.</p>
+                    <p>Each element designed to match Excalidraw's hand-drawn aesthetic.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🎨</div>
                     <h3>14 Components</h3>
-                    <p>A curated collection of prefab components for e-commerce, profiles, and mobile interfaces.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📦</div>
-                    <h3>Open Source</h3>
-                    <p>Completely free and open source. Contribute, modify, and share with the community.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Ready to Use</h3>
-                    <p>All components are fully grouped and ready to drag and drop into your projects.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💼</div>
-                    <h3>Professional Quality</h3>
-                    <p>Perfect for presentations, wireframes, mockups, and design projects.</p>
+                    <p>Curated collection for e-commerce, profiles, and mobile interfaces.</p>
                 </div>
             </div>
         </section>
@@ -395,20 +239,6 @@
                     <div class="stat-number">100%</div>
                     <div class="stat-label">Free & Open</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">Possibilities</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="preview-section">
-            <h2>Getting Started</h2>
-            <div class="preview-container">
-                <p style="font-size: 1.2rem; line-height: 1.8; opacity: 0.95;">
-                    Click the "Add to Excalidraw" button above to instantly add this library to your workspace.
-                    The elements will appear in your library panel, ready to drag and drop into your drawings.
-                </p>
             </div>
         </section>
 
@@ -416,31 +246,17 @@
             <div class="footer-links">
                 <a href="https://excalidraw.com">Excalidraw</a>
                 <a href="https://github.com/excalidraw/excalidraw-libraries">Libraries</a>
-                <a href="https://docs.excalidraw.com">Documentation</a>
             </div>
-            <a href="https://github.com/heyyykk3/excalidraw-prefab-library" class="github-link">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                </svg>
-                View Source on GitHub
-            </a>
             <p style="margin-top: 20px; opacity: 0.7;">Built with ❤️ for the Excalidraw community</p>
         </footer>
     </div>
 
     <script>
         function addToExcalidraw() {
-            const githubUsername = 'heyyykk3';
-            const repoName = 'excalidraw-prefab-library';
-            const libraryFileName = 'my-prefab-library.excalidrawlib';
-
-            const libraryUrl = `https://raw.githubusercontent.com/${githubUsername}/${repoName}/main/${libraryFileName}`;
+            const libraryUrl = 'https://raw.githubusercontent.com/heyyykk3/excalidraw-prefab-library/main/my-prefab-library.excalidrawlib';
             const excalidrawUrl = `https://excalidraw.com/?addLibrary=${encodeURIComponent(libraryUrl)}`;
-
             window.open(excalidrawUrl, '_blank');
         }
     </script>
 </body>
-
 </html>
