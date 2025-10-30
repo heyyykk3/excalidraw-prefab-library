@@ -294,12 +294,12 @@
     <div class="container">
         <header>
             <div class="logo">🎨</div>
-            <h1>Prefab Library</h1>
-            <p class="subtitle">14 ready-to-use design components for Excalidraw</p>
+            <h1>Home Screens UI Library</h1>
+            <p class="subtitle">Official Excalidraw library with 14 mobile app components</p>
             <div class="cta-buttons">
-                <button onclick="openInExcalidraw()" class="btn btn-primary">Open in Excalidraw</button>
-                <a href="prefab-library-complete.excalidrawlib" download class="btn btn-secondary">Download Library (All
-                    14)</a>
+                <button onclick="openInExcalidraw()" class="btn btn-primary">Open Official Library</button>
+                <a href="https://raw.githubusercontent.com/excalidraw/excalidraw-libraries/heyyykk3-home-screens-1761851276885/libraries/heyyykk3/home-screens.excalidrawlib"
+                    download="home-screens.excalidrawlib" class="btn btn-secondary">Download Official Library</a>
             </div>
         </header>
 
@@ -411,8 +411,8 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <h3>One-Click Install</h3>
-                    <p>Open directly in Excalidraw with one click using blob URL technology!</p>
+                    <h3>Official Library</h3>
+                    <p>Now available in the official Excalidraw libraries collection!</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🎯</div>
@@ -452,11 +452,8 @@
 
     <script>
         function openInExcalidraw() {
-            // Direct URL to the library file hosted on GitHub Pages
-            const libraryUrl = 'https://heyyykk3.github.io/excalidraw-prefab-library/prefab-library-complete.excalidrawlib';
-
-            // Open Excalidraw with the library URL
-            const excalidrawUrl = `https://excalidraw.com/?addLibrary=${encodeURIComponent(libraryUrl)}`;
+            // Official Excalidraw library URL
+            const excalidrawUrl = 'https://excalidraw.com/?addLibrary=https%3A%2F%2Fraw.githubusercontent.com%2Fexcalidraw%2Fexcalidraw-libraries%2Fheyyykk3-home-screens-1761851276885%2Flibraries%2Fheyyykk3%2Fhome-screens.excalidrawlib%3Fraw%3Dtrue';
             window.open(excalidrawUrl, '_blank');
         }
     </script>
